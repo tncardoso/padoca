@@ -43,8 +43,8 @@ void Padoca::Tick() {
     char key = keypad_.getKey();
     if (key != NO_KEY) {
         // keypad key pressed
-        // Keyboard.print(key);
-        profiles_[current_profile_]->Click(key);
+        String name = profiles_[current_profile_]->Click(key);
+        UpdateDisplayClick(key, name);
     }
 }
 
@@ -56,5 +56,14 @@ void Padoca::UpdateDisplay() {
     lcd_.print(current_profile_);
     lcd_.print("] ");
     lcd_.print(profiles_[current_profile_]->name());
+}
 
+void Padoca::UpdateDisplayClick(char key, String name) {
+    lcd_.setCursor(0, 1);
+    for(int n = 0; n < 16; n++) { lcd_.print(" "); }
+    lcd_.setCursor(0, 1);
+    lcd_.print("[");
+    lcd_.print(key);
+    lcd_.print("] ");
+    lcd_.print(name);
 }

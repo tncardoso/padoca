@@ -35,27 +35,33 @@ Padoca padoca = Padoca(lcd, keypad, encoder, RENC_BUTTON);
 
 void setup() {
   delay(3000);
+  
   Profile* debug = new Profile("Debug");
-  debug->AddCommand('0', new CommandText("0", "0"));
-  /*
-    .AddCommand('1', new CommandText("1", "1"))
-    .AddCommand('2', new CommandText("2", "2"))
-    .AddCommand('3', new CommandText("3", "3"))
-    .AddCommand('4', new CommandText("4", "4"))
-    .AddCommand('5', new CommandText("5", "5"))
-    .AddCommand('6', new CommandText("6", "6"))
-    .AddCommand('7', new CommandText("7", "7"))
-    .AddCommand('8', new CommandText("8", "8"))
-    .AddCommand('9', new CommandText("9", "9"))
-    .AddCommand('a', new CommandText("a", "a"))
-    .AddCommand('b', new CommandText("b", "b"))
-    .AddCommand('c', new CommandText("c", "c"))
-    .AddCommand('d', new CommandText("d", "d"))
-    .AddCommand('e', new CommandText("e", "e"))
-    .AddCommand('f', new CommandText("f", "f"));*/
+  debug->AddCommand('0', new CommandText("button 0", "0"));
+  debug->AddCommand('1', new CommandText("button 1", "1"));
+  debug->AddCommand('2', new CommandText("button 2", "2"));
+  debug->AddCommand('3', new CommandText("button 3", "3"));
+  debug->AddCommand('4', new CommandText("button 4", "4"));
+  debug->AddCommand('5', new CommandText("button 5", "5"));
+  debug->AddCommand('6', new CommandText("button 6", "6"));
+  debug->AddCommand('7', new CommandText("button 7", "7"));
+  debug->AddCommand('8', new CommandText("button 8", "8"));
+  debug->AddCommand('9', new CommandText("button 9", "9"));
+  debug->AddCommand('a', new CommandText("button a", "a"));
+  debug->AddCommand('b', new CommandText("button b", "b"));
+  debug->AddCommand('c', new CommandText("button c", "c"));
+  debug->AddCommand('d', new CommandText("button d", "d"));
+  debug->AddCommand('e', new CommandText("button e", "e"));
+  debug->AddCommand('f', new CommandText("button f", "f"));
   padoca.AddProfile(debug);
-  // 
 
+
+  Profile* work = new Profile("Work");
+  //work->AddCommand('c', new CommandKey("(Un)mute Mic", 'd', COM_CTRL));
+  //work->AddCommand('d', new CommandKey("Camera", 'e', COM_CTRL));
+  //work->AddCommand('e', new CommandText("button e", "e"));
+  padoca.AddProfile(work);
+  
   padoca.Setup();
 }
 

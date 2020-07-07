@@ -11,9 +11,9 @@
 class Profile {
     public:
         Profile(String name);
-        void Click(char key);
+        String Click(char key);
         
-        inline Profile& AddCommand(char k, Command* command) { commands_[k].push_back(command); }
+        inline void AddCommand(char k, Command* command) { commands_[k].push_back(command); }
         inline const String name() { return name_; }
 
     private:

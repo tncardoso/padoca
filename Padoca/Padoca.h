@@ -20,6 +20,7 @@ class Padoca {
 
     private:
         void UpdateDisplay();
+        void UpdateDisplayClick(char key, String name);
 
         LiquidCrystal& lcd_;
         Keypad& keypad_;

@@ -4,8 +4,16 @@ Profile::Profile(String name):
     name_(name) {
 }
 
-void Profile::Click(char key) {
-    for(auto& cmd: commands_[key]) {
+String Profile::Click(char key) {
+    if (commands_.find(key) == commands_.end()) {
+        return "noop";
+    } else if (commands_[key].empty()) {
+        return "noop";
+    }
+    
+    for(auto cmd: commands_[key]) {
         cmd->Click();
     }
+    
+    return commands_[key][0]->name();
 }

@@ -13,12 +13,12 @@ class Profile {
         Profile(String name);
         String Click(char key);
         
-        inline void AddCommand(char k, Command* command) { commands_[k].push_back(command); }
+        inline void AddCommand(char k, Command* command) { commands_[k] = command; }
         inline const String name() { return name_; }
 
     private:
         String name_;
-        std::map<char, std::vector<Command*>> commands_;
+        std::map<char, Command*> commands_;
 };
 
 #endif

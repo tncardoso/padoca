@@ -33,34 +33,52 @@ Keypad keypad = Keypad(makeKeymap(KEYPAD_KEYS), KEYPAD_ROWS_PINS, KEYPAD_COLS_PI
 RotaryEncoder encoder(RENC_A, RENC_B);
 Padoca padoca = Padoca(lcd, keypad, encoder, RENC_BUTTON);
 
+Profile debug("Debug");
+CommandText debug_0("button 0", "0");
+CommandText debug_1("button 1", "1");
+CommandText debug_2("button 2", "2");
+CommandText debug_3("button 3", "3");
+CommandText debug_4("button 4", "4");
+CommandText debug_5("button 5", "5");
+CommandText debug_6("button 6", "6");
+CommandText debug_7("button 7", "7");
+CommandText debug_8("button 8", "8");
+CommandText debug_9("button 9", "9");
+CommandText debug_a("button a", "a");
+CommandText debug_b("button b", "b");
+CommandText debug_c("button c", "c");
+CommandText debug_d("button d", "d");
+CommandText debug_e("button e", "e");
+CommandText debug_f("button f", "f");
+
+Profile work("Work");
+CommandKey work_c("Meet Mic", 'd', COM_CTRL);
+CommandKey work_d("Meet Camera", 'e', COM_CTRL);
+
 void setup() {
   delay(3000);
-  
-  Profile* debug = new Profile("Debug");
-  debug->AddCommand('0', new CommandText("button 0", "0"));
-  debug->AddCommand('1', new CommandText("button 1", "1"));
-  debug->AddCommand('2', new CommandText("button 2", "2"));
-  debug->AddCommand('3', new CommandText("button 3", "3"));
-  debug->AddCommand('4', new CommandText("button 4", "4"));
-  debug->AddCommand('5', new CommandText("button 5", "5"));
-  debug->AddCommand('6', new CommandText("button 6", "6"));
-  debug->AddCommand('7', new CommandText("button 7", "7"));
-  debug->AddCommand('8', new CommandText("button 8", "8"));
-  debug->AddCommand('9', new CommandText("button 9", "9"));
-  debug->AddCommand('a', new CommandText("button a", "a"));
-  debug->AddCommand('b', new CommandText("button b", "b"));
-  debug->AddCommand('c', new CommandText("button c", "c"));
-  debug->AddCommand('d', new CommandText("button d", "d"));
-  debug->AddCommand('e', new CommandText("button e", "e"));
-  debug->AddCommand('f', new CommandText("button f", "f"));
-  padoca.AddProfile(debug);
+    
+  debug.AddCommand('0', &debug_0);
+  debug.AddCommand('1', &debug_1);
+  debug.AddCommand('2', &debug_2);
+  debug.AddCommand('3', &debug_3);
+  debug.AddCommand('4', &debug_4);
+  debug.AddCommand('5', &debug_5);
+  debug.AddCommand('6', &debug_6);
+  debug.AddCommand('7', &debug_7);
+  debug.AddCommand('8', &debug_8);
+  debug.AddCommand('9', &debug_9);
+  debug.AddCommand('a', &debug_a);
+  debug.AddCommand('b', &debug_b);
+  debug.AddCommand('c', &debug_c);
+  debug.AddCommand('d', &debug_d);
+  debug.AddCommand('e', &debug_e);
+  debug.AddCommand('f', &debug_f);
+  padoca.AddProfile(&debug);
 
-
-  Profile* work = new Profile("Work");
-  //work->AddCommand('c', new CommandKey("(Un)mute Mic", 'd', COM_CTRL));
-  //work->AddCommand('d', new CommandKey("Camera", 'e', COM_CTRL));
-  //work->AddCommand('e', new CommandText("button e", "e"));
-  padoca.AddProfile(work);
+  work.AddCommand('c', &work_c);
+  work.AddCommand('d', &work_d);
+  padoca.AddProfile(&work);
   
   padoca.Setup();
 }

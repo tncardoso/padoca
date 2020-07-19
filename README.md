@@ -1,6 +1,8 @@
 Padoca Hotkeys Keyboard
 =======================
 
+This code is experimental and under development.
+
 Installation
 ------------
 

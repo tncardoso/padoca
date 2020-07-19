@@ -52,12 +52,22 @@ CommandText debug_e("button e", "e");
 CommandText debug_f("button f", "f");
 
 Profile work("Work");
+CommandKey work_8("I3 Horz", 'h', COM_SUPER);
+CommandKey work_9("I3 Vert", 'v', COM_SUPER);
+CommandKey work_a("I3 Normal", 'e', COM_SUPER);
+CommandKey work_b("I3 Stack", 's', COM_SUPER);
 CommandKey work_c("Meet Mic", 'd', COM_CTRL);
 CommandKey work_d("Meet Camera", 'e', COM_CTRL);
+CommandKey work_e("Zoom Mic", 'a', COM_ALT);
+CommandKey work_f("Zoom Camera", 'v', COM_ALT);
 
 void setup() {
-  delay(3000);
-    
+  for (size_t i = 0; i < 30; i++) {
+    // wait before initializing so we have time to re-upload sketch if something goes wrong.
+    // otherwise, we have to short RST -> GND twice to reset the arduino pro micro.
+    delay(100);
+  }
+  
   debug.AddCommand('0', &debug_0);
   debug.AddCommand('1', &debug_1);
   debug.AddCommand('2', &debug_2);
@@ -76,8 +86,14 @@ void setup() {
   debug.AddCommand('f', &debug_f);
   padoca.AddProfile(&debug);
 
+  work.AddCommand('8', &work_8);
+  work.AddCommand('9', &work_9);
+  work.AddCommand('a', &work_a);
+  work.AddCommand('b', &work_b);
   work.AddCommand('c', &work_c);
   work.AddCommand('d', &work_d);
+  work.AddCommand('e', &work_e);
+  work.AddCommand('f', &work_f);
   padoca.AddProfile(&work);
   
   padoca.Setup();

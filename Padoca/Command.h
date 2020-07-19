@@ -8,6 +8,7 @@
 const unsigned int COM_CTRL = 1;
 const unsigned int COM_ALT = 1 << 1;
 const unsigned int COM_SHIFT = 1 << 2;
+const unsigned int COM_SUPER = 1 << 3;
 
 class Command {
     public:
@@ -52,6 +53,10 @@ class CommandKey : public Command {
 
           if (mod_ & COM_SHIFT) {
              Keyboard.press(KEY_LEFT_SHIFT);
+          }
+
+          if (mod_ & COM_SUPER) {
+             Keyboard.press(KEY_LEFT_GUI);
           }
 
           Keyboard.press(key_);

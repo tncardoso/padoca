@@ -30,6 +30,7 @@ class Padoca {
         size_t current_profile_;
         int encoder_position_;
         int encoder_button_;
+        bool encoder_profile_selector_;
 
 };
 

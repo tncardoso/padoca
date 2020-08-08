@@ -21,6 +21,8 @@ void Padoca::Setup() {
     
     lcd_.begin(16, 2);
     lcd_.noBlink();
+    lcd_.createChar(0, CUSTOM_CHAR_LOCKER);
+    lcd_.createChar(1, CUSTOM_CHAR_SCROLL);
     UpdateDisplay();
 }
 
@@ -36,12 +38,24 @@ void Padoca::Tick() {
     encoder_button_ = new_encoder_button;
     
     int new_encoder_position = encoder_.getPosition();
+    int dir = new_encoder_position - encoder_position_;
     if (new_encoder_position != encoder_position_) {
         encoder_position_ = new_encoder_position;
 
-        // changed profile
-        current_profile_ = abs(encoder_position_) % profiles_.size();
-        UpdateDisplay();
+        if (encoder_profile_selector_) {
+          // changed profile
+          current_profile_ = abs(encoder_position_) % profiles_.size();
+          UpdateDisplay();
+        } else {
+          // used scroll
+            char scroll_key = '-';
+          if (dir > 0) {
+            scroll_key = '+';
+          }
+          
+          String name = profiles_[current_profile_]->Click(scroll_key);
+          UpdateDisplayClick(scroll_key, name);
+        }
     }
 
     char key = keypad_.getKey();
@@ -60,9 +74,9 @@ void Padoca::UpdateDisplay() {
     lcd_.print(current_profile_);
     lcd_.print("][");
     if (encoder_profile_selector_) {
-      lcd_.print("P");
+      lcd_.write(static_cast<uint8_t>(0));
     } else {
-      lcd_.print("S");
+      lcd_.write(static_cast<uint8_t>(1));
     }
     lcd_.print("] ");
     lcd_.print(profiles_[current_profile_]->name());

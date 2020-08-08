@@ -50,6 +50,8 @@ CommandText debug_c("button c", "c");
 CommandText debug_d("button d", "d");
 CommandText debug_e("button e", "e");
 CommandText debug_f("button f", "f");
+CommandText debug_up("scroll up", "up");
+CommandText debug_down("scroll down", "down");
 
 Profile work("Work");
 CommandKey work_8("I3 Horz", 'h', COM_SUPER);
@@ -84,6 +86,8 @@ void setup() {
   debug.AddCommand('d', &debug_d);
   debug.AddCommand('e', &debug_e);
   debug.AddCommand('f', &debug_f);
+  debug.AddCommand('+', &debug_up);
+  debug.AddCommand('-', &debug_down);
   padoca.AddProfile(&debug);
 
   work.AddCommand('8', &work_8);

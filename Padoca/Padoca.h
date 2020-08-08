@@ -11,6 +11,28 @@
 
 #include "Profile.h"
 
+const byte CUSTOM_CHAR_LOCKER[] = {
+    B00000,
+    B01110,
+    B10001,
+    B10001,
+    B11111,
+    B11011,
+    B11011,
+    B11111
+};
+
+const byte CUSTOM_CHAR_SCROLL[] = {
+    B00100,
+    B01110,
+    B11111,
+    B00100,
+    B00100,
+    B11111,
+    B01110,
+    B00100
+};
+
 class Padoca {
     public:
         Padoca(LiquidCrystal& lcd, Keypad& keypad, RotaryEncoder& encoder, byte encoder_button_pin);
